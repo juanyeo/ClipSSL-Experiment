@@ -6,7 +6,7 @@ from clip_utils import build_text_embedding_openclip
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--ann', default='data/coco/annotations/instances_val2017.json')
+    parser.add_argument('--ann', default='/data/clipssl/coco/annotations/instances_val2017.json')
     parser.add_argument('--out_path', default='datasets/embeddings/coco_with_background_clip_rn50x64.pt')
     parser.add_argument('--model_name', default="EVA02-CLIP-B-16")
     parser.add_argument('--pretrained', default="eva")

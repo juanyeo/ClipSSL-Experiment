@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser.add_argument('--out_path', default='datasets/embeddings/voc_with_background_evaclip_vitb16.pt')
     parser.add_argument('--model_name', default="EVA02-CLIP-B-16")
     parser.add_argument('--pretrained', default="eva")
-    parser.add_argument('--cache_dir', default="checkpoints/EVA02_CLIP_B_psz16_s8B.pt")
+    parser.add_argument('--cache_dir', default="/data/clipssl/checkpoints/EVA02_CLIP_B_psz16_s8B.pt")
     args = parser.parse_args()
 
     print('Loading', args.ann, flush=True)

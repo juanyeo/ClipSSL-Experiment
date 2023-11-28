@@ -17,7 +17,7 @@ model = dict(
 )
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+data_root = '/data/clipssl/coco/'
 
 data = dict(
     val=dict(

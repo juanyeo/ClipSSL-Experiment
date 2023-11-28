@@ -64,9 +64,8 @@ class CLIPSelf:
         #loss_inter = self.loss_inter_features(denormed_boxes, student_dence_features)
         loss_inter = self.loss_inter_features_weighted(denormed_boxes, student_dence_features)
 
-        losses = dict(loss_cosine=loss_cosine*args.cosine_weight + loss_inter * 0.1)
+        losses = dict(loss_cosine=loss_cosine*args.cosine_weight, loss_inter=loss_inter * 0.1)
 
-        logging.info(f"----- Loss Cosine: {loss_cosine:.3f} Loss Inter: {loss_inter * 0.1:.3f}")
         '''
         28 Nov 23: inter crop losses (END)
         '''
@@ -102,7 +101,7 @@ class CLIPSelf:
                 result += torch.mean(dot_matrix)
                 count += 1
 
-        return -(result / count)
+        return 1-(result / count)
 
     def loss_inter_features_weighted(self, denormed_boxes, dense_features):
         result = 0
@@ -118,11 +117,10 @@ class CLIPSelf:
                 
                 dot_matrix = torch.matmul(cropped_features, cropped_features.T)
                 weighted_dot_matrix = F.softmax(dot_matrix.clone().fill_diagonal_(-float("Inf")), dim=1) * dot_matrix
-
-                result += torch.mean(weighted_dot_matrix)
+                result += torch.sum(weighted_dot_matrix) / cropped_features.shape[0]
                 count += 1
 
-        return -(result / count)
+        return 1-(result / count)
     
     '''
     28 Nov 23: additional functions (END)

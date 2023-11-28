@@ -12,7 +12,7 @@ model = dict(
     backbone=dict(
         type='EvaCLIPViT',
         model_name='EVA02-CLIP-B-16',
-        pretrained='checkpoints/EVA02_CLIP_B_psz16_s8B.pt',
+        pretrained='/data/clipssl/checkpoints/EVA02_CLIP_B_psz16_s8B.pt',
         norm_cfg=norm_cfg,
         out_indices=[3, 5, 7, 11]),
     neck=dict(
@@ -198,18 +198,18 @@ data = dict(
     train=dict(
         type=dataset_type,
         ann_file=
-        'data/coco/zero-shot/instances_train2017_seen_2_65_cat.json',
+        '/data/clipssl/coco/zero-shot/instances_train2017_seen_2_65_cat.json',
         img_prefix='data/coco/train2017/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file='data/coco/zero-shot/instances_val2017_all_2.json',
-        img_prefix='data/coco/val2017/',
+        ann_file='/data/clipssl/coco/zero-shot/instances_val2017_all_2.json',
+        img_prefix='/data/clipssl/coco/val2017/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file='data/coco/zero-shot/instances_val2017_all_2.json',
-        img_prefix='data/coco/val2017/',
+        ann_file='/data/clipssl/coco/zero-shot/instances_val2017_all_2.json',
+        img_prefix='/data/clipssl/coco/val2017/',
         pipeline=test_pipeline)
 )
 evaluation = dict(interval=1, metric=['bbox'])
